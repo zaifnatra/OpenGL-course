@@ -1,0 +1,62 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "C/C++: clang++ build active file",
+      "command": "/usr/bin/clang++",
+      "args": [
+        // --- Compiler Flags ---
+        "-std=c++17",
+        "-fcolor-diagnostics",
+        "-fansi-escape-codes",
+        "-Wall",
+        "-g",
+
+        // --- Include Path ---
+        "-I${workspaceFolder}/Libraries/include",
+        
+        // --- Library Path (Corrected) ---
+        // This tells the linker WHERE to look for libraries
+        "-L${workspaceFolder}/Libraries/lib",
+
+        // --- Source Files ---
+        // This will compile all .cpp files in your root folder
+        // (Make sure you have glad.c in here!)
+        "${workspaceFolder}/*.cpp",
+        "${workspaceFolder}/glad.c",
+
+        // --- Library Link (Corrected) ---
+        // This tells the linker WHAT to link
+        "${workspaceFolder}/Libraries/lib/libglfw.3.4.dylib",
+        
+        // --- Output ---
+        "-o",
+        "${workspaceFolder}/app",
+
+        // --- macOS Frameworks ---
+        "-framework",
+        "OpenGL",
+        "-framework",
+        "Cocoa",
+        "-framework",
+        "IOKit",
+        "-framework",
+        "CoreVideo",
+        "-framework",
+        "CoreFoundation",
+        "-Wno-deprecated"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "compiler: /usr/bin/clang++"
+    }
+  ]
+}
+
